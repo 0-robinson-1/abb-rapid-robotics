@@ -2,7 +2,7 @@
 ! Non motion calculation of a rectangle
 
 MODULE CalculateRectangle
-    ! Persistent variables (retain value acress runs)
+    ! Persistent variables (retain value across runs)
     PERS num length := 10;  ! Default value assignment
     PERS num width := 5;
     PERS num area := 0;     ! Initialized to 0
