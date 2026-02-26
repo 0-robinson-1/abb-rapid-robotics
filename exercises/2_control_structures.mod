@@ -1,7 +1,7 @@
 ! Exercise 2 Control structures with conditional branching
 MODULE SumCalculator
   ! Persistent variables for input and results
-  PERS num inputNum := 10;   ! Default positive integer, change to test
+  PERS num inputNum := 5;   ! Default positive integer, change to test
   PERS num totalSum := 0;    ! Accumulater, initialized to 0
   PERS bool isEven := FALSE; ! Flag for even/odd result
 
