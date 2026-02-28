@@ -2,7 +2,7 @@
 MODULE SumCalculator
   ! Persistent variables for input and results
   PERS num inputNum := 5;   ! Default positive integer, change to test
-  PERS num totalSum := 0;    ! Accumulater, initialized to 0
+  PERS num totalSum := 0;    ! Accumulator, initialized to 0
   PERS bool isEven := FALSE; ! Flag for even/odd result
 
   PROC main()
@@ -18,9 +18,9 @@ MODULE SumCalculator
       TPWRITE "Input " \Num:=inputNum \ " is odd.";
     ENDIF
 
-    ! Compute sum from 1  to inputNum: FOR loop with accumulation
-    FOR i FROM 1 TO inputNUM DO
-      totalSum := totalSum + i; !Arithmetic addition and assignmwent
+    ! Compute sum from 1 to inputNum: FOR loop with accumulation
+    FOR i FROM 1 TO inputNum DO
+      totalSum := totalSum + i; ! Arithmetic addition and assignment
     ENDFOR
 
     ! Output results in a conditional way

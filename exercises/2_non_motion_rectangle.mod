@@ -1,4 +1,3 @@
-! First exercise
 ! Non motion calculation of a rectangle
 
 MODULE CalculateRectangle
