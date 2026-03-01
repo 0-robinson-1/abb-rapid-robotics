@@ -5,7 +5,7 @@ MODULE BasicVars
     VAR bool isLarge;        ! Local flag
 
     PROC main()
-        area := pi * (radius ** 2);   ! Exponent, multiplication
+        area := pi * Pow(radius, 2);   ! Use Pow for exponentiation
 
         isLarge := (area > 100);      ! Comparison (>), assignment to bool
 
