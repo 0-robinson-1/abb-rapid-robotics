@@ -1,4 +1,5 @@
-! Exercise 5 Home corner
+! Exercise 5 - Home corner square
+! Move to a safe home position then draw a 100 x 100 square using RelTool offsets
 
 PROC main()
   ! Starting at a safe home position
