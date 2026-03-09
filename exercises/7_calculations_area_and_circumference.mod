@@ -9,3 +9,6 @@ PROC main()
 
   ! Output with formatting: \Num defaults to 6 decimals; use NumToStr for custom
   TPWrite "For radius " \Num:=radius\":";
+  TPWrite "Circumference = "\Num:=circumference\"mm";
+  TPWrite "Area = "\Num:=area\"mm^2";
+ENDPROC
