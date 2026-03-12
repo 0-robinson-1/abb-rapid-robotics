@@ -31,7 +31,12 @@ PROC main()
   pCurrent := [[centerX + radius * Cos(0), centerY + radius * Sin(0), startZ], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
   MoveL pCurrent, v200, fine, tool0;
 
+  ! Loop to trace the helix: Increment angle and Z proportionally
+  FOR i FROM 1 TO totalSegments DO
+    ! Update angle: Cumulative for full turns
+    currentAngle := currentAngle + angleStep;
 
+    ! 
 
 
 
