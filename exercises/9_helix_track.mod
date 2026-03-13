@@ -36,7 +36,24 @@ PROC main()
     ! Update angle: Cumulative for full turns
     currentAngle := currentAngle + angleStep;
 
-    ! 
+    ! Update Z: Linear ascent = (i/ totalSegments) * total height (pitch * turns)
+    currentZ := startZ + (i/ totalSegments) * (pitch * numTurns);
 
+    ! Compute next point: Parametric helix equations
+    pNext := [[centerX + radius * Cos(currentAngle),
+          centerY + radius * Sin(currentAngle),
+          currentZ],
+          [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
 
+    ! Move linearly to next point (small segments approximates curve)
+    MoveL pNext, v100, z1, tool0; !Low speed, small fly-by for continuity
 
+    ! Update current for next iteration
+    pCurrent := pNext;
+  ENDFOR
+
+  ! Return to home after completing the helix
+  MoveJ pHome, v500, z50, tool0;
+
+  TPWrite "Helix tracking complete - " \Num:=numTurns \ " turns, pitch " \Num:=pitch \ " mm";
+ENDPROC
