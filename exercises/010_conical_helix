@@ -39,18 +39,26 @@ PROC main()
   FOR i FROM 1 TO totalSegments DO
     currentAngle := currentAngle + angleStep;    ! Cumulative
 
-  ! Radius interpolation: Linear change = start + i * step
-  currentRadius := startRadius + i * radiusStep;
+    ! Radius interpolation: Linear change = start + i * step
+    currentRadius := startRadius + i * radiusStep;
 
-  ! Z interpolation: As before, fractional * total height
-  currentZ := startZ + (i/totalSegments) * (pitch * numTurns);
+    ! Z interpolation: As before, fractional * total height
+    currentZ := startZ + (i/totalSegments) * (pitch * numTurns);
 
-  ! Parametric pose: Variable r in Cos/Sin
-  pNext := [[centerX + currentRadius * Cos(currentAngle)
+    ! Parametric pose: Variable r in Cos/Sin
+    pNext := [[centerX + currentRadius * Cos(currentAngle),
+          centerY + currentRadius * Sin(currentAngle),
+          currentZ],
+          [1,0,0,0}, [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
 
+    MoveL pNext, v100, z1, tool0;  ! Segment move
 
+    pCurrent := pNext;
+  ENDFOR
 
+  ! Retract home
+  MoveJ pHome, v500, z50, tool0;
+  TPWrite "Conical helix complete: Taper from " \Num:=startRadius \ "to "\Num:=endRadius \ " mm";
+ENDPROC
 
-
-
-
+ENDMODULE
