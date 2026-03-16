@@ -23,7 +23,30 @@ PROC main()
   VAR robtarget pCurrent;                ! Current pose
   VAR robtarget pNext;                   ! Next pose
 
-! Derive params: radiusStep = (end - start) / totalSegments for linear taper
+  ! Derive params: radiusStep = (end - start) / totalSegments for linear taper
+  totalSegments := numTurns * segmentsPerTurn;
+  angleStep := 2 * pi/segmentsPerTurn;
+  radiusStep := (endRadius - startRadius)/totalSegments;    ! Positive for outward, negative for inward
+
+  ! Approach home
+  MoveJ pHome, v500, z50, tool0;
+
+  ! Start point: θ=0, r=startRadius, Z=startZ
+  pCurrent := [[centerX + startRadius * Cos(0), centerY + startRadius * Sin(0), startZ],[1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
+  MoveL pCurrent, v200, fine, tool0;
+
+  ! Conical helix loop: Update r, θ, Z per segment
+  FOR i FROM 1 TO totalSegments DO
+    currentAngle := currentAngle + angleStep;    ! Cumulative
+
+  ! Radius interpolation: Linear change = start + i * step
+  currentRadius := startRadius + i * radiusStep;
+
+  ! Z interpolation: As before, fractional * total height
+  currentZ := startZ + (i/totalSegments) * (pitch * numTurns);
+
+  ! Parametric pose: Variable r in Cos/Sin
+  pNext := [[centerX + currentRadius * Cos(currentAngle)
 
 
 
