@@ -1,14 +1,15 @@
 ! Exercise 3 Control structures with conditional branching
 MODULE SumCalculator
   ! Persistent variables for input and results
-  PERS num inputNum := 10;   ! Default positive integer, change to test
-  PERS num totalSum := 0;    ! Accumulator, initialized to 0
-  PERS bool isEven := FALSE; ! Flag for even/odd result
+  PERS num inputNum := 10;   ! Default positive integer, *change to test*
+  VAR num totalSum := 0;    ! Accumulator, initialized to 0
+  VAR bool isEven := FALSE; ! Flag for even/odd result
 
   PROC main()
     ! Local string variables for output building
     VAR string evenOddMsg;
     VAR string sumMsg;
+    VAR num i;      ! Loop counter
 
     ! Reset sum for each run (optional, since PERS retains but we recompute)
     totalSum := 0;
