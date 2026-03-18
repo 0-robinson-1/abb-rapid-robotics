@@ -3,10 +3,8 @@
 
 MODULE HomeCornerSquare
 
-  ! --------------------------------------------------------------------------------
-  ! These two robtargets must exist (taught on the real robot or defined here, I defined them here)
   PERS robtarget pHome  := [[400, 0, 500], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
-  PERS robtarget pStart := [[300, -100, 100], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9];
+  PERS robtarget pStart := [[300, -100, 100], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
 
   PROC main()
       ! 1. Safe approach to home position (joint motion, fast)
