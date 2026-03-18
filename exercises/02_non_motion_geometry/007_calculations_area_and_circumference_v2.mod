@@ -1,5 +1,12 @@
 ! Exercise 7 - Calculate area and circumference
 
+MODULE AreaCircumference
+
+  CONST num pi := 3.14159;
+  PERS num radius := 5;
+  VAR num area;
+  VAR num circumference;
+
 PROC main()
   ! Circumference calculation
   circumference := 2 * pi * radius;
@@ -8,7 +15,7 @@ PROC main()
   area := pi * Pow(radius, 2);                  ! Pow function for exponentiation (RAPID kernel math)
 
   ! Output with formatting: \Num defaults to 6 decimals; use NumToStr for custom
-  TPWrite "For radius " \Num:=radius\":";
-  TPWrite "Circumference = "\Num:=circumference\"mm";
-  TPWrite "Area = "\Num:=area\"mm^2";
+  TPWrite "For radius " \Num:=radius;
+  TPWrite "Circumference = " \Num:=circumference;
+  TPWrite "Area = " \Num:=area;
 ENDPROC
