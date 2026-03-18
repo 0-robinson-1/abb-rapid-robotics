@@ -33,7 +33,7 @@ MODULE CladdingHatch
       MoveL RelTool(pStart, 150, i*20, 0), vCladding, z5, tool0;
 
       ! Turn laser OFF at the end of the line
-      SetDO dolaser, 0;
+      SetDO doLaser, 0;
 
       ! Small step-over to next line (20 mm in Y direction)
       MoveL RelTool(pStart, 0, (i+1)*20, 0), v200, z5, tool0;
