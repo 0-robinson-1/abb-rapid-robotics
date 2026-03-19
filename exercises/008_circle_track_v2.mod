@@ -9,7 +9,7 @@ MODULE TrackCircle
   PERS num centerX := 300;                   ! Circle center (base frame X)
   PERS num centerY := 0;                     ! Circle center (base frame Y)
   PERS num centerZ := 100;                   ! Fixed Z height for planar circle
-  PERS num numSegments := 36;                ! Number of segments (higher = smoother; 36 for 10 degree steps)
+  CONST num numSegments := 36;                ! Number of segments (higher = smoother; 36 for 10 degree steps)
   PERS robtarget pHome := [[400, 0, 500], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]]; ! Safe home
   
   PROC main()
@@ -17,6 +17,7 @@ MODULE TrackCircle
     VAR num currentAngle := 0;               ! Starting angle
     VAR robtarget pCurrent;                  ! Dynamic target point
     VAR robtarget pNext;                     ! Next point in circle
+    VAR num i;
   
     ! Compute angle step: 2*pi / segments (full circle)
     angleStep := 2 * pi / numSegments;
@@ -25,7 +26,7 @@ MODULE TrackCircle
     MoveJ pHome, v500, z50, tool0;
   
     ! Move to starting point of circle (angle 0: centerX + radius, centerY)
-    pCurrent := [[centerX + radius, centerY, heightZ], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9,9E9]];
+    pCurrent := [[centerX + radius, centerY, centerZ], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
     MoveL pCurrent, v200, fine, tool0;
   
     ! Loop to trace the circle: Calculate points using polar coordinates
@@ -34,8 +35,12 @@ MODULE TrackCircle
       currentAngle := currentAngle + angleStep;
   
       ! Compute next point: x = centerX + radius * Cos(angle), y = centerY + radius * Sin(angle)
-      pNext := [[centerX + radius * Cos(currentAngle), centerY + radius * Sin(currentAngle),
-  heightZ], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
+      pNext := [[centerX + radius * Cos(currentAngle),
+                 centerY + radius * Sin(currentAngle),
+                 centerZ],
+                [1,0,0,0],
+                [0,0,0,0],
+                [9E9,9E9,9E9,9E9,9E9,9E9]];
   
       ! Move linearly to next point (small segment approximates arc)
       MoveL pNext, v100, z1, tool0; ! Low speed, small zone for smooth path
@@ -47,7 +52,7 @@ MODULE TrackCircle
     ! Return to home after completing the circle
     MoveJ pHome, v500, z50, tool0;
   
-    TPWrite "Circle tracking complete - radius "\Num:=radius\"mm";
+    TPWrite "Circle tracking complete - radius " + NumToStr(radius, 1) + " mm";
   ENDPROC
 
 ENDMODULE
