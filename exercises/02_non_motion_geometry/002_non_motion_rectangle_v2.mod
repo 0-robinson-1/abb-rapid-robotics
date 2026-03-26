@@ -1,6 +1,6 @@
 ! Non motion calculation of a rectangle
 
-MODULE CalculateRectangle
+MODULE Ex002CalculateRectangle
     ! Configuration parameters
     PERS num length := 10;  ! Default value assignment
     PERS num width := 5;
