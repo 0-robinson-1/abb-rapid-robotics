@@ -1,4 +1,4 @@
-MODULE 001_hello_world
+MODULE Ex001HelloWorld
 
   ! My first RAPID program
   PROC main()
