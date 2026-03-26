@@ -1,4 +1,4 @@
-MODULE MainModule
+MODULE HelloWorld
 
   ! My first RAPID program
   PROC main()
