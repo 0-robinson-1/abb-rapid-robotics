@@ -1,7 +1,7 @@
-MODULE Ex001HelloWorld
+MODULE Ex001_HelloWorld
 
   ! My first RAPID program
-  PROC main()
+  PROC Ex001_HelloWorld()
     TPWrite "Hello ABB World!";
   ENDPROC
 
