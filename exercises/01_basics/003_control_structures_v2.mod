@@ -1,11 +1,11 @@
-! Exercise 3 Control structures with conditional branching
-MODULE SumCalculator
+MODULE Ex003_SumCalculator
+  ! Exercise 3 Control structures with conditional branching
   ! Persistent variables for input and results
   PERS num inputNum := 10;   ! Default positive integer, *change to test*
   VAR num totalSum := 0;    ! Accumulator, initialized to 0
   VAR bool isEven := FALSE; ! Flag for even/odd result
 
-  PROC main()
+  PROC Ex003_Run()
     ! Local string variables for output building
     VAR string evenOddMsg;
     VAR string sumMsg;
