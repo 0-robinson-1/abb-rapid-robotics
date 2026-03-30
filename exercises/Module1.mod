@@ -22,5 +22,6 @@ MODULE Module1
     !***********************************************************
     PROC main()
         Ex001_Run;
+        Ex002_Run;
     ENDPROC
 ENDMODULE
