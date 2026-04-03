@@ -2,8 +2,8 @@ MODULE Ex005_HomeCornerSquare
 ! Exercise 5 - Home corner square
 ! Move to a safe home position then draw a 100 x 100 square using RelTool offsets
 
-  PERS robtarget pHome  := [[600, 0, 600], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
-  PERS robtarget pStart := [[700, -100, 400], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
+  PERS robtarget pHome;
+  PERS robtarget pStart;
 
   PROC Ex005_Run()
       ! 1. Safe approach to home position (joint motion, fast)
