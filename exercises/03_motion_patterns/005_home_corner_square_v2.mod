@@ -13,9 +13,9 @@ MODULE Ex005_HomeCornerSquare
       MoveL pStart, v100, fine, tool0;
 
       ! 3. Trace the square from pStart using RelTool (X, Y, Z)
-      MoveL RelTool(pStart, 100, 0, 0), v100, z1, tool0;    ! Move along X (right, corner 2)
-      MoveL RelTool(pStart, 100, 100, 0), v100, z1, tool0;  ! Move along Y (forward, corner 3)
-      MoveL RelTool(pStart, 0, 100, 0), v100, z1, tool0;    ! Move along X (Left, corner 4)
+      MoveL RelTool(pStart, 400, 0, 0), v100, z1, tool0;    ! Move along X (right, corner 2)
+      MoveL RelTool(pStart, 400, 400, 0), v100, z1, tool0;  ! Move along Y (forward, corner 3)
+      MoveL RelTool(pStart, 0, 400, 0), v100, z1, tool0;    ! Move along X (Left, corner 4)
       MoveL pStart, v100, fine, tool0;    ! Move along Y (Back to pStart, corner 1)
 
       ! 4. Return to safe home position
