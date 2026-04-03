@@ -2,10 +2,6 @@ MODULE Ex006_CladdingHatch
 ! Exercise 6 - Cladding Hatch Pattern
 ! 5 parallel lines with laser simulation (SetDO)
 
-  ! Reuse the same points from Exercise 5
-    PERS robtarget pHome;
-    PERS robtarget pStart;
-
   ! Speed for deposition
   CONST speeddata vCladding := [200, 500, 5000, 1000]; ! 200 mm/s TCP speed
                 ! speeddata := [v_tcp,v_ori,v_leax,v_reax];
