@@ -1,4 +1,4 @@
-MODULE CladdingHatch
+MODULE Ex006_CladdingHatch
 ! Exercise 6 - Cladding Hatch Pattern
 ! 5 parallel lines with laser simulation (SetDO)
 
@@ -14,7 +14,7 @@ MODULE CladdingHatch
                 ! v_leax = 5000 mm/s allowed on linear external axes (e.g. rails)
                 ! v_reax = 1000 deg/s allowed on rotational external axes (e.g. chuck)
 
-  PROC main()
+  PROC Ex006_Run()
     VAR num i;
 
     ! 1. Safe approach
