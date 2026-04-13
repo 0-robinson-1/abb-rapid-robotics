@@ -12,26 +12,24 @@ MODULE Ex006_CladdingHatch
 
   PROC Ex006_Run()
     VAR num i;
+    VAR robtarget pLineStart;
+    VAR robtarget pLineEnd;
 
-    ! 1. Safe approach
+    ! 1. Safe approach Home
     MoveJ pHome, v500, z50, tool0;
-
-    ! 2. Go to start of first line
-    MoveL pStart, v200, fine, tool0;
 
     ! 3. Draw 5 parallel cladding lines
     FOR i FROM 0 TO 4 DO
-      ! Turn laser ON
-      SetDO doLaser0, 1;
+      ! Build each line in the SAME reference frame as pStart
+      pLineStart := Offs(pStart, 0, i*20, 0);
+      pLineEnd := Offs(pStart, 150, i*20, 0);
 
-      !MOVE forward 150 mm along the line at cladding speed
-      MoveL RelTool(pStart, 150, i*20, 0), vCladding, z5, tool0;
+      MoveL pLineStart, v200, z5, tool0;
 
       ! Turn laser OFF at the end of the line
+      SetDO doLaser0, 1;
+      MoveL pLineEnd, vCladding, z5, tool0;
       SetDO doLaser0, 0;
-
-      ! Small step-over to next line (20 mm in Y direction)
-      MoveL RelTool(pStart, 0, (i+1)*20, 0), v200, z5, tool0;
     ENDFOR
 
     ! 4. Return to safe home
