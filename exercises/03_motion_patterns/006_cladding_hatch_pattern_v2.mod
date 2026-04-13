@@ -22,7 +22,7 @@ MODULE Ex006_CladdingHatch
     FOR i FROM 0 TO 25 DO
       ! Build each line in the SAME reference frame as pStart
       pLineStart := Offs(pStart, 0, i*20, 0);
-      pLineEnd := Offs(pStart, 150, i*20, 0);
+      pLineEnd := Offs(pStart, 300, i*20, 0);
 
       MoveL pLineStart, v200, z5, tool0;
 
