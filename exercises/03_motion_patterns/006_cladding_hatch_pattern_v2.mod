@@ -19,7 +19,7 @@ MODULE Ex006_CladdingHatch
     MoveJ pHome, v500, z50, tool0;
 
     ! 3. Draw 5 parallel cladding lines
-    FOR i FROM 0 TO 4 DO
+    FOR i FROM 0 TO 25 DO
       ! Build each line in the SAME reference frame as pStart
       pLineStart := Offs(pStart, 0, i*20, 0);
       pLineEnd := Offs(pStart, 150, i*20, 0);
