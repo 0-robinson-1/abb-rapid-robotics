@@ -4,7 +4,7 @@ MODULE Ex008_TrackCircle
 ! Approximates a circle using small linear segments
 ! Uses sin/cos for point calculation ( RAPID math functions)
 
-  LOCAL CONST num pi := 3.14159                    ! Pi constant
+  LOCAL CONST num pi := 3.14159;                   ! Pi constant
   LOCAL PERS num radius := 50;                     ! Circle radius in mm
   PERS num centerX := 300;                   ! Circle center (base frame X)
   PERS num centerY := 0;                     ! Circle center (base frame Y)
