@@ -10,7 +10,6 @@ MODULE Ex008_TrackCircle
   PERS num centerY := 0;                     ! Circle center (base frame Y)
   PERS num centerZ := 100;                   ! Fixed Z height for planar circle
   CONST num numSegments := 36;                ! Number of segments (higher = smoother; 36 for 10 degree steps)
-  PERS robtarget pHome := [[400, 0, 500], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]]; ! Safe home
   
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
@@ -26,8 +25,7 @@ MODULE Ex008_TrackCircle
     MoveJ pHome, v500, z50, tool0;
   
     ! Move to starting point of circle (angle 0: centerX + radius, centerY)
-    pCurrent := [[centerX + radius, centerY, centerZ], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
-    MoveL pCurrent, v200, fine, tool0;
+    MoveL pStart, v200, fine, tool0;
   
     ! Loop to trace the circle: Calculate points using polar coordinates
     FOR i FROM 1 TO numSegments DO
