@@ -1,13 +1,12 @@
+MODULE Ex007_AreaCircumference
 ! Exercise 7 - Calculate area and circumference
-
-MODULE AreaCircumference
 
   CONST num pi := 3.14159;
   PERS num radius := 5;
   VAR num area;
   VAR num circumference;
 
-PROC main()
+PROC Ex007_Run()
   ! Circumference calculation
   circumference := 2 * pi * radius;
 
