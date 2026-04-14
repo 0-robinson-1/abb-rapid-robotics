@@ -1,18 +1,18 @@
+MODULE Ex008_TrackCircle
+
 ! Exercise 8 - Track a circle with the robot
-! Approximates a circle using small linear segments ( for full 360 degrees path)
+! Approximates a circle using small linear segments
 ! Uses sin/cos for point calculation ( RAPID math functions)
 
-MODULE TrackCircle
-
-  CONST num pi := 3.14159                    ! Pi constant
-  PERS num radius := 50;                     ! Circle radius in mm
+  LOCAL CONST num pi := 3.14159                    ! Pi constant
+  LOCAL PERS num radius := 50;                     ! Circle radius in mm
   PERS num centerX := 300;                   ! Circle center (base frame X)
   PERS num centerY := 0;                     ! Circle center (base frame Y)
   PERS num centerZ := 100;                   ! Fixed Z height for planar circle
   CONST num numSegments := 36;                ! Number of segments (higher = smoother; 36 for 10 degree steps)
   PERS robtarget pHome := [[400, 0, 500], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]]; ! Safe home
   
-  PROC main()
+  PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
     VAR num currentAngle := 0;               ! Starting angle
     VAR robtarget pCurrent;                  ! Dynamic target point
