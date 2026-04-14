@@ -1,6 +1,7 @@
 MODULE Ex004_BasicVars
-    CONST num pi := 3.14159; ! Immutable constant
-    PERS num radius := 5;    ! Persistent for reuse
+
+    LOCAL CONST num pi := 3.14159; ! Immutable constant
+    LOCAL PERS num radius := 5;    ! Persistent for reuse
     VAR num areaLarge;            ! Local mutable (initialized implicitly to 0)
     VAR bool isLarge;        ! Local flag
 
@@ -14,5 +15,7 @@ MODULE Ex004_BasicVars
 
         TPWrite "Circle area: "\Num:=areaLarge;
         TPWrite "Is large? "\Bool:=isLarge;   ! \Bool formats TRUE/FALSE as string
+    
     ENDPROC
+    
 ENDMODULE

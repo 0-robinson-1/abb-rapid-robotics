@@ -1,12 +1,13 @@
 MODULE Ex007_AreaCircumference
 ! Exercise 7 - Calculate area and circumference
 
-  CONST num pi := 3.14159;
-  PERS num radius := 5;
-  VAR num area;
+  LOCAL CONST num pi := 3.14159;
+  LOCAL PERS num radius := 5;
+  LOCAL VAR num area;
   VAR num circumference;
 
 PROC Ex007_Run()
+
   ! Circumference calculation
   circumference := 2 * pi * radius;
 
@@ -17,4 +18,5 @@ PROC Ex007_Run()
   TPWrite "For radius " \Num:=radius;
   TPWrite "Circumference = " \Num:=circumference;
   TPWrite "Area = " \Num:=area;
+  
 ENDPROC
