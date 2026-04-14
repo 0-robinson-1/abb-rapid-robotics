@@ -5,27 +5,31 @@ MODULE Ex008_TrackCircle
 ! Uses sin/cos for point calculation ( RAPID math functions)
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
+  LOCAL CONST int numSegments := 36;               ! 36 segments = 10 ° steps
+
   LOCAL PERS num radius := 50;                     ! Circle radius in mm
-  PERS num centerX := 300;                   ! Circle center (base frame X)
-  PERS num centerY := 0;                     ! Circle center (base frame Y)
-  PERS num centerZ := 100;                   ! Fixed Z height for planar circle
-  CONST num numSegments := 36;                ! Number of segments (higher = smoother; 36 for 10 degree steps)
+
+  ! These will be calculated from pStart
+  LOCAL VAR num centerX;
+  LOCAL VAR num centerY;
+  LOCAL VAR num centerZ;
   
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
     VAR num currentAngle := 0;               ! Starting angle
-    VAR robtarget pCurrent;                  ! Dynamic target point
     VAR robtarget pNext;                     ! Next point in circle
     VAR num i;
   
     ! Compute angle step: 2*pi / segments (full circle)
     angleStep := 2 * pi / numSegments;
   
-    ! Safe approach to home
+    ! Safe approach to home (taught in CommonData)
     MoveJ pHome, v500, z50, tool0;
   
-    ! Move to starting point of circle (angle 0: centerX + radius, centerY)
-    MoveL pStart, v200, fine, tool0;
+    ! Move to starting point of circle
+    MoveL CommonData\pStart, v200, fine, tool0 \WObj:wobj0;
+
+    !------------------Fix code below
   
     ! Loop to trace the circle: Calculate points using polar coordinates
     FOR i FROM 1 TO numSegments DO
