@@ -14,7 +14,8 @@ MODULE Module1
         !Ex004_Run;
         !Ex005_Run;
         !Ex006_Run;
-        Ex007_Run;
+        !Ex007_Run;
+        Ex008_Run;
 
     ENDPROC
 ENDMODULE
