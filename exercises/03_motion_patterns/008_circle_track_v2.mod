@@ -5,7 +5,7 @@ MODULE Ex008_TrackCircle
 ! Uses sin/cos for point calculation (RAPID math functions)
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
-  LOCAL CONST int numSegments := 36;               ! 36 segments = 10° steps
+  LOCAL CONST num numSegments := 36;               ! 36 segments = 10° steps
 
   LOCAL PERS num radius := 50;                     ! Circle radius in mm
 
@@ -18,7 +18,7 @@ MODULE Ex008_TrackCircle
     VAR num angleStep;                       ! Angle increment in radians
     VAR num currentAngle := 0;               ! Starting angle
     VAR robtarget pNext;                     ! Next point in circle
-    VAR int i;
+    VAR num i;
   
     ! Compute angle step: 2*pi / segments (full circle)
     angleStep := 2 * pi / numSegments;
