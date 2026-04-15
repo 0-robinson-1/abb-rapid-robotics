@@ -2,7 +2,7 @@ MODULE Ex008_TrackCircle
 
 ! Exercise 8 - Track a circle with the robot
 ! Approximates a circle using small linear segments
-! Uses sin/cos for point calculation ( RAPID math functions)
+! Uses sin/cos for point calculation (RAPID math functions)
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
   LOCAL CONST int numSegments := 36;               ! 36 segments = 10 ° steps
@@ -29,30 +29,29 @@ MODULE Ex008_TrackCircle
     ! Move to starting point of circle
     MoveL CommonData\pStart, v200, fine, tool0 \WObj:wobj0;
 
-    !------------------Fix code below
+    ! Define circle relative to pStart
+    centerX := CommonData\pStart.trans.x - radius;
+    centerY := CommonData\pStart.trans.y;
+    centerZ := CommonData\pStart.trans.z;
   
-    ! Loop to trace the circle: Calculate points using polar coordinates
+    ! Trace the circle
     FOR i FROM 1 TO numSegments DO
-      ! Increment angle (radians)
+
       currentAngle := currentAngle + angleStep;
+
+      pNext := CommonData\pStart;
   
-      ! Compute next point: x = centerX + radius * Cos(angle), y = centerY + radius * Sin(angle)
-      pNext := [[centerX + radius * Cos(currentAngle),
-                 centerY + radius * Sin(currentAngle),
-                 centerZ],
-                [1,0,0,0],
-                [0,0,0,0],
-                [9E9,9E9,9E9,9E9,9E9,9E9]];
+      pNext.trans.x := centerX + radius * Cos(currentAngle);
+      pNext.trans.y := centerY + radius * Sin(currentAngle);
+      pNext.trans.z := centerZ;
   
       ! Move linearly to next point (small segment approximates arc)
-      MoveL pNext, v100, z1, tool0; ! Low speed, small zone for smooth path
+      MoveL pNext, v100, z1, tool0 \WObj:=wobj0;
   
-      ! Update current for next iteration (optional, for clarity)
-      pCurrent := pNext;
     ENDFOR
   
     ! Return to home after completing the circle
-    MoveJ pHome, v500, z50, tool0;
+    MoveJ CommonData\pHome, v500, z50, tool0 \WObj:=wobj0;
   
     TPWrite "Circle tracking complete - radius " + NumToStr(radius, 1) + " mm";
   ENDPROC
