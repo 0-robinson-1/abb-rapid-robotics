@@ -44,7 +44,7 @@ MODULE Ex008_TrackCircle
       pNext.trans.z := centerZ;
   
       ! Move linearly to next point (small segment approximates arc)
-      MoveL pNext, v100, z1, tool0 \WObj:=wobj0;
+      MoveL pNext, v100, fine, tool0 \WObj:=wobj0;
     ENDFOR
   
     ! Return to home after completing the circle
