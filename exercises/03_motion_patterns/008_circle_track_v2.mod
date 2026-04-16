@@ -25,9 +25,8 @@ MODULE Ex008_TrackCircle
     MoveJ pHome, v500, z50, tool0 \WObj:=wobj0;
   
     ! Move to starting point of circle
-    MoveL pStartLocal, v200, fine, tool0 \WObj:=wobj0;
-
     pStartLocal := pStart;
+    MoveL pStartLocal, v200, fine, tool0 \WObj:=wobj0;
 
     ! Define circle relative to pStart (so it starts exactly at pStart)
     centerX := pStartLocal.trans.x - radius;
