@@ -26,7 +26,7 @@ MODULE Ex008_TrackCircle
     MoveJ CommonData\pHome, v500, z50, tool0 \WObj:=wobj0;
   
     ! Move to starting point of circle
-    MoveL CommonData\pStart, v200, fine, tool0 \WObj:=wobj0;
+    MoveL pStartLocal, v200, fine, tool0 \WObj:=wobj0;
 
     pStartLocal := CommonData\pStart;
 
