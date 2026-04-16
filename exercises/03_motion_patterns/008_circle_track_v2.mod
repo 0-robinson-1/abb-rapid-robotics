@@ -6,7 +6,7 @@ MODULE Ex008_TrackCircle
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
   LOCAL CONST num numSegments := 12;               ! 36 segments = 10° steps
-  LOCAL PERS num radius := 200;                    ! Circle radius in mm
+  LOCAL PERS num radius := 1000;                    ! Circle radius in mm
 
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
