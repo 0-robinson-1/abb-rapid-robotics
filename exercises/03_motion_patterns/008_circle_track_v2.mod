@@ -9,11 +9,6 @@ MODULE Ex008_TrackCircle
 
   LOCAL PERS num radius := 50;                     ! Circle radius in mm
 
-  ! These will be calculated from pStart
-  LOCAL VAR num centerX;
-  LOCAL VAR num centerY;
-  LOCAL VAR num centerZ;
-  
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
     VAR num currentAngle := 0;               ! Starting angle
