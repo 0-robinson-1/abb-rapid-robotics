@@ -5,7 +5,7 @@ MODULE Ex008_TrackCircle
 ! Uses sin/cos for point calculation (RAPID math functions)
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
-  LOCAL CONST num numSegments := 36;               ! 36 segments = 10° steps
+  LOCAL CONST num numSegments := 12;               ! 36 segments = 10° steps
   LOCAL PERS num radius := 200;                    ! Circle radius in mm
 
   PROC Ex008_Run()
