@@ -6,7 +6,6 @@ MODULE Ex008_TrackCircle
 
   LOCAL CONST num pi := 3.14159;                   ! Pi constant
   LOCAL CONST num numSegments := 36;               ! 36 segments = 10° steps
-
   LOCAL PERS num radius := 50;                     ! Circle radius in mm
 
   PROC Ex008_Run()
@@ -23,14 +22,14 @@ MODULE Ex008_TrackCircle
     angleStep := 2 * pi / numSegments;
   
     ! Safe approach to home (taught in CommonData)
-    MoveJ CommonData\pHome, v500, z50, tool0 \WObj:=wobj0;
+    MoveJ pHome, v500, z50, tool0 \WObj:=wobj0;
   
     ! Move to starting point of circle
     MoveL pStartLocal, v200, fine, tool0 \WObj:=wobj0;
 
-    pStartLocal := CommonData\pStart;
+    pStartLocal := pStart;
 
-    ! Define circle relative to pStart
+    ! Define circle relative to pStart (so it starts exactly at pStart)
     centerX := pStartLocal.trans.x - radius;
     centerY := pStartLocal.trans.y;
     centerZ := pStartLocal.trans.z;
@@ -39,7 +38,7 @@ MODULE Ex008_TrackCircle
     FOR i FROM 1 TO numSegments DO
       currentAngle := currentAngle + angleStep;
 
-      pNext := pStartLocal;
+      pNext := pStartLocal;         ! keep rot + robconf stable
   
       pNext.trans.x := centerX + radius * Cos(currentAngle);
       pNext.trans.y := centerY + radius * Sin(currentAngle);
@@ -47,11 +46,10 @@ MODULE Ex008_TrackCircle
   
       ! Move linearly to next point (small segment approximates arc)
       MoveL pNext, v100, z1, tool0 \WObj:=wobj0;
-  
     ENDFOR
   
     ! Return to home after completing the circle
-    MoveJ CommonData\pHome, v500, z50, tool0 \WObj:=wobj0;
+    MoveJ pHome, v500, z50, tool0 \WObj:=wobj0;
   
     TPWrite "Circle tracking complete - radius " + NumToStr(radius, 1) + " mm";
   ENDPROC
