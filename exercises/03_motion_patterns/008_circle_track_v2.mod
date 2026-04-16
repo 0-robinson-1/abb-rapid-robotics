@@ -17,29 +17,34 @@ MODULE Ex008_TrackCircle
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
     VAR num currentAngle := 0;               ! Starting angle
+    VAR robtarget pStartLocal;               ! Copying pStart to pStartLocal to avoid errors...
     VAR robtarget pNext;                     ! Next point in circle
+    VAR num centerX;
+    VAR num centerY;
+    VAR num centerZ;
     VAR num i;
   
     ! Compute angle step: 2*pi / segments (full circle)
     angleStep := 2 * pi / numSegments;
   
     ! Safe approach to home (taught in CommonData)
-    MoveJ CommonData\pHome, v500, z50, tool0;
+    MoveJ CommonData\pHome, v500, z50, tool0 \WObj:=wobj0;
   
     ! Move to starting point of circle
     MoveL CommonData\pStart, v200, fine, tool0 \WObj:=wobj0;
 
+    pStartLocal := CommonData\pStart;
+
     ! Define circle relative to pStart
-    centerX := CommonData\pStart.trans.x - radius;
-    centerY := CommonData\pStart.trans.y;
-    centerZ := CommonData\pStart.trans.z;
+    centerX := pStartLocal.trans.x - radius;
+    centerY := pStartLocal.trans.y;
+    centerZ := pStartLocal.trans.z;
   
     ! Trace the circle
     FOR i FROM 1 TO numSegments DO
-
       currentAngle := currentAngle + angleStep;
 
-      pNext := CommonData\pStart;
+      pNext := pStartLocal;
   
       pNext.trans.x := centerX + radius * Cos(currentAngle);
       pNext.trans.y := centerY + radius * Sin(currentAngle);
