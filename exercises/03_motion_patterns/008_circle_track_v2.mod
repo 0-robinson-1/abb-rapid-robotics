@@ -4,9 +4,8 @@ MODULE Ex008_TrackCircle
 ! Approximates a circle using small linear segments
 ! Uses sin/cos for point calculation (RAPID math functions)
 
-  LOCAL CONST num pi := 3.14159;                   ! Pi constant
-  LOCAL CONST num numSegments := 12;               ! 36 segments = 10° steps
-  LOCAL PERS num radius := 500;                    ! Circle radius in mm
+  LOCAL CONST num numSegments := 36;               ! 36 segments = 10° steps
+  LOCAL PERS num radius := 750;                    ! Circle radius in mm
 
   PROC Ex008_Run()
     VAR num angleStep;                       ! Angle increment in radians
@@ -18,8 +17,8 @@ MODULE Ex008_TrackCircle
     VAR num centerZ;
     VAR num i;
   
-    ! Compute angle step: 2*pi / segments (full circle)
-    angleStep := 2 * pi / numSegments;
+    ! Compute angle step using degrees
+    angleStep := 360 / numSegments;
   
     ! Safe approach to home (taught in CommonData)
     MoveJ pHome, v500, z50, tool0 \WObj:=wobj0;
