@@ -8,7 +8,7 @@ MODULE Ex008_TrackCircle
   LOCAL PERS num radius := 50;                    ! Circle radius in mm
 
   PROC Ex008_Run()
-    VAR num angleStep;                       ! Angle increment in radians
+    VAR num angleStep;                       ! Angle increment
     VAR num currentAngle := 0;               ! Starting angle
     VAR robtarget pStartLocal;               ! Copying pStart to pStartLocal to avoid errors...
     VAR robtarget pNext;                     ! Next point in circle
