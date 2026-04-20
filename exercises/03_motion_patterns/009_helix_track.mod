@@ -5,7 +5,7 @@ MODULE Ex009_HelixTrack
 
 LOCAL CONST num segmentsPerTurn := 36;      ! 36 segments = 10° steps
 
-LOCAL PERS num radius := 100;            ! Helix radius (mm)
+LOCAL PERS num radius := 50;            ! Helix radius (mm)
 LOCAL PERS num pitch := 20;
 LOCAL PERS num numTurns :=10;
 
