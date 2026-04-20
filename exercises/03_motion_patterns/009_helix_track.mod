@@ -3,7 +3,7 @@ MODULE Ex009_HelixTrack
 ! 3D spiral path: Circle in XY while ascending in Z
 ! Approximates using linear segments; parametric with Cos/Sin and linear Z
 
-LOCAL CONST num numSegments := 36;      ! 36 segments = 10° steps
+LOCAL CONST num segmentsPerTurn := 36;      ! 36 segments = 10° steps
 
 LOCAL PERS num radius := 50;            ! Helix radius (mm)
 LOCAL PERS num pitch := 20;
