@@ -1,21 +1,22 @@
-MODULE ConicalHelix
-! Exercise 10 - Track a Conical Helix with the Robot
-! 3D tapered spiral: Helix with linearly varying radius (e.g., widening/narrowing for conical cladding)
+MODULE Ex010_conical_helix
+! Exercise 10 - Track a Conical Helix
 
-CONST num pi :=3.14159;                  !Pi constant
-PERS num startRadius := 50;              !Initial radius (mm; taper from this)
-PERS num endRadius := 100;               !Final radius (mm; > start for outward taper)
-PERS num centerX := 300;                 ! Center X (base frame)
-PERS num centerY := 0;                   ! Center Y (base frame)
-PERS num startZ := 100;                  ! Starting Z height
-PERS num pitch := 20;                    ! Z rise per turn (mm/turn)
-PERS num numTurns := 9;                  ! Numbers of revolutions
-PERS num segmentsPerTurn := 36;          ! Segments per revolution
-PERS robtarget pHome := [[400, 0, 500], [1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];  ! Safe home
+LOCAL CONST num segmentsPerTurn := 36;   ! 36 segments = 10° steps
 
-PROC main()
+LOCAL PERS num startRadius := 100;       ! Initial radius (mm)
+LOCAL PERS num endRadius := 50;          ! Final radius (mm)
+LOCAL PERS num pitch := 20;              ! Z rise per turn (mm/turn)
+LOCAL PERS num numTurns := 15;           ! Numbers of revolutions
+
+PROC Ex010_Run()
+  VAR robtarget pCenterLocal;
+  VAR robtarget pCurrent;
+  VAR robtarget pNext;
+
+  !!!!! Continue refactoring below
   VAR num totalSegments;                 ! turns * segmentsPerTurn
   VAR num angleStep;                     ! Delta theta/segment (rad)
+
   VAR num currentAngle := 0;             ! Cumulative angle
   VAR num currentZ := startZ;            ! Progressive Z
   VAR num currentRadius := startradius;  ! Interpolated radius
