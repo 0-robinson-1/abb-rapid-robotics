@@ -17,6 +17,9 @@ PROC Ex010_Run()
   VAR num angleStepDeg;
   VAR num angleDeg;
   VAR num i;
+  VAR num totalHeight;
+  VAR num radiusStep;
+  VAR num currentRadius;
 
   VAR num centerX;
   VAR num centerY;
