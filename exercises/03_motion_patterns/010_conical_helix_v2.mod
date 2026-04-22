@@ -13,19 +13,28 @@ PROC Ex010_Run()
   VAR robtarget pCurrent;
   VAR robtarget pNext;
 
-  !!!!! Continue refactoring below
   VAR num totalSegments;                 ! turns * segmentsPerTurn
-  VAR num angleStep;                     ! Delta theta/segment (rad)
+  VAR num angleStepDeg;
+  VAR num angleDeg;
+  VAR num i;
 
-  VAR num currentAngle := 0;             ! Cumulative angle
-  VAR num currentZ := startZ;            ! Progressive Z
-  VAR num currentRadius := startradius;  ! Interpolated radius
-  VAR num radiusStep;                    ! Delta radius per segment
-  VAR robtarget pCurrent;                ! Current pose
-  VAR robtarget pNext;                   ! Next pose
+  VAR num centerX;
+  VAR num centerY;
+  VAR num startZ;
+  VAR num currentZ;
 
-  ! Derive params: radiusStep = (end - start) / totalSegments for linear taper
+  pCenterLocal := pStart;                 ! Copying pStart to pStartLocal to avoid errors...
+
+  centerX := pCenterLocal.trans.x;
+  centerY := pCenterLocal.trans.y;
+  startZ := pCenterLocal.trans.z;
+
   totalSegments := numTurns * segmentsPerTurn;
+  IF totalSegments <= 0 THEN
+    TPWrite "Conical helix: totalSegments <=0 (check numTurns/segmentsPerTurn)";
+    RETURN;
+  ENDIF
+  
   angleStep := 2 * pi/segmentsPerTurn;
   radiusStep := (endRadius - startRadius)/totalSegments;    ! Positive for outward, negative for inward
 
