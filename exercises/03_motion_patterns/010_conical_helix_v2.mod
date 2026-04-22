@@ -34,41 +34,49 @@ PROC Ex010_Run()
     TPWrite "Conical helix: totalSegments <=0 (check numTurns/segmentsPerTurn)";
     RETURN;
   ENDIF
-  
-  angleStep := 2 * pi/segmentsPerTurn;
-  radiusStep := (endRadius - startRadius)/totalSegments;    ! Positive for outward, negative for inward
+
+  angleStepDeg := 360 / segmentsPerTurn;
+  angleDeg := 0;
+
+  totalHeight := pitch * numTurns;         ! Total Z climb over the whole helix
+  radiusStep := (endRadius - startRadius) / totalSegments;
 
   ! Approach home
   MoveJ pHome, v500, z50, tool0;
 
-  ! Start point: θ=0, r=startRadius, Z=startZ
-  pCurrent := [[centerX + startRadius * Cos(0), centerY + startRadius * Sin(0), startZ],[1,0,0,0], [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
+  ! Start point: angle=0°, radius=startRadius, Z=startZ
+  pCurrent := pCenterLocal;
+  pCurrent.trans.x := centerX + startRadius * Cos(angleDeg);
+  pCurrent.trans.y := centerY + startRadius * Sin(angleDeg);
+  pCurrent.trans.z := startZ;
+
   MoveL pCurrent, v200, fine, tool0;
 
-  ! Conical helix loop: Update r, θ, Z per segment
+  ! Conical helix: radius tapers linearly while Z rises
   FOR i FROM 1 TO totalSegments DO
-    currentAngle := currentAngle + angleStep;    ! Cumulative
+    angleDeg := angleDeg + angleStepDeg;
 
-    ! Radius interpolation: Linear change = start + i * step
     currentRadius := startRadius + i * radiusStep;
+    currentZ := startZ + (i/totalSegments) * totalHeight;
 
-    ! Z interpolation: As before, fractional * total height
-    currentZ := startZ + (i/totalSegments) * (pitch * numTurns);
+    pNext := pCenterLocal;
+    pNext.trans.x := centerX + currentRadius * Cos(angleDeg);
+    pNext.trans.y := centerY + currentRadius * Sin(angleDeg);
+    pNext.trans.z := currentZ;
 
-    ! Parametric pose: Variable r in Cos/Sin
-    pNext := [[centerX + currentRadius * Cos(currentAngle),
-          centerY + currentRadius * Sin(currentAngle),
-          currentZ],
-          [1,0,0,0}, [0,0,0,0], [9E9,9E9,9E9,9E9,9E9,9E9]];
-
-    MoveL pNext, v100, z1, tool0;  ! Segment move
+    MoveL pNext, v100, z1, tool0;           ! Segment move
 
     pCurrent := pNext;
   ENDFOR
 
   ! Retract home
   MoveJ pHome, v500, z50, tool0;
-  TPWrite "Conical helix complete: Taper from " \Num:=startRadius \ "to "\Num:=endRadius \ " mm";
-ENDPROC
 
+  TPWrite "Conical helix complete";
+  TPWrite "Turns: " \Num:=numTurns;
+  TPWrite "Pitch (mm/turn): " \Num:=pitch;
+  TPWrite "Radius start (mm): " \Num:=startRadius;
+  TPWrite "Radius end (mm): " \Num:=endRadius;
+
+ENDPROC
 ENDMODULE
